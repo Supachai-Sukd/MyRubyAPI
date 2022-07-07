@@ -205,3 +205,28 @@ nil.present?
 {}.present?
 [].present?
 ```
+
+
+Create Scaffolding
+อะไรที่หน้าตาเหมือนๆกันให้เราทำ Scaffolding เป็น Template
+หน้าตาในการสร้างจะเหมือนกับ Create model เลย
+มันจะสร้าง Controller, Model, Route แต่เป็น resources :books 
+สร้าง Unit test, file migration
+
+Cli example
+```
+rails g scaffold Book name:text description:text pages:integer
+```
+
+ทุกอย่างจะเหมือน rails g model จะแตกต่างแค่มี routes, controller
+มี resources :books มาให้มันเป็นการย่อ route ถ้าเราอยากย่อ route user ก็ทำได้
+แบบนี้ และสามารถกำหนดให้ใช้แค่บางออย่างได้ด้วยโดนใช้ only or except
+resources :users, only: [:index, :show, :create]
+resources :users, except: [:destroy]
+
+แต่ Controller จะแตกต่างเยอะหน่อยมาดูกัน
+before_action :set_book, only: %i[ show update destroy ]
+before_action เป็นคำสั่งพิเศษ
+
+
+
